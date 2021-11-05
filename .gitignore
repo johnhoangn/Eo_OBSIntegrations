@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/OBSIntegrations/v16
+/OBSIntegrations/bin/Debug
+/OBSIntegrations/obj/Debug
+/OBSIntegrations/obj
+/OBSIntegrations/Directory.Build.targets
+/OBSIntegrations/Directory.Build.props

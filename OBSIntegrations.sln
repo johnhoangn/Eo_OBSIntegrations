@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBSIntegrations", "OBSIntegrations\OBSIntegrations.csproj", "{B9E3B81F-D984-4294-B4A0-4566B6BFD4B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9E3B81F-D984-4294-B4A0-4566B6BFD4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E3B81F-D984-4294-B4A0-4566B6BFD4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E3B81F-D984-4294-B4A0-4566B6BFD4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E3B81F-D984-4294-B4A0-4566B6BFD4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95AAE6DE-7086-4A7F-915A-A6E4CCE19B62}
+	EndGlobalSection
+EndGlobal
