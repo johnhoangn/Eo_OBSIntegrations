@@ -92,8 +92,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plugin.cs" />
+    <Compile Include="Controller\OBSAction.cs" />
+    <Compile Include="Controller\OBSIntegrationsController.cs" />
+    <Compile Include="Controller\BeatsaberEvent.cs" />
+    <Compile Include="Model\OBSBinding.cs" />
+    <Compile Include="Model\OBSIntegrationsModel.cs" />
+    <Compile Include="OBSIntegrations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\OBSIntegrationsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="manifest.json" />
@@ -110,5 +116,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

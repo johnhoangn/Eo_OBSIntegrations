@@ -4,13 +4,13 @@ using IPALogger = IPA.Logging.Logger;
 namespace OBSIntegrations
 {
     [Plugin(RuntimeOptions.SingleStartInit)]
-    public class Plugin
+    public class OBSIntegrations
     {
-        internal static Plugin Instance { get; private set; }
+        internal static OBSIntegrations Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
 
         [Init]
-        public Plugin(IPALogger logger)
+        public OBSIntegrations(IPALogger logger)
         {
             Instance = this;
             Log = logger;
@@ -19,7 +19,7 @@ namespace OBSIntegrations
         [OnStart]
         public void OnApplicationStart()
         {
-            Plugin.Log.Info("OnApplicationStart");
+            OBSIntegrations.Log.Info("OnApplicationStart");
         }
 
         [OnExit]
@@ -27,6 +27,5 @@ namespace OBSIntegrations
         {
 
         }
-
     }
 }
