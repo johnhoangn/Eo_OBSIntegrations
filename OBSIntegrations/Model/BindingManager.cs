@@ -30,7 +30,7 @@ namespace OBSIntegrations.Model {
 
         public bool Unbind(OIBinding bind) {
             if (!bindingSets.TryGetValue(bind.bsEvent, out List<OIBinding> subset)) {
-                throw new KeyNotFoundException("No binds currently be hooked to that Event! " + bind.bsEvent.ToString());
+                throw new KeyNotFoundException("No binds currently hooked to that Event! " + bind.bsEvent.ToString());
             } else {
                 return subset.Remove(bind);
             }
