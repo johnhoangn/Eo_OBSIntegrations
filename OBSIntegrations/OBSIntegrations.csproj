@@ -97,9 +97,10 @@
   <ItemGroup>
     <Compile Include="Controller\OIController.cs" />
     <Compile Include="Controller\SubManager.cs" />
-    <Compile Include="Controller\Tasker.cs" />
     <Compile Include="Enumerators.cs" />
+    <Compile Include="Controller\BindingWriter.cs" />
     <Compile Include="JSON\OIRequest.cs" />
+    <Compile Include="JSON\SavedBindings.cs" />
     <Compile Include="JSON\SceneChangeRequest.cs" />
     <Compile Include="Model\OIBinding.cs" />
     <Compile Include="Model\BindingManager.cs" />

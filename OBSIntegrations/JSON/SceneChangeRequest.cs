@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Newtonsoft.Json;
 
-namespace OBSIntegrations {
+namespace OBSIntegrations.JSON {
     class SceneChangeRequest : OIRequest {
         [JsonProperty("scene-name")]
         string SceneName { get; set; }

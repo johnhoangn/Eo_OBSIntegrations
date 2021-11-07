@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBSIntegrations {
+using OBSIntegrations.Model;
+
+namespace OBSIntegrations.Controller {
     class OIController {
         private static OIController instance = null;
         private static Dictionary<OIEventType, int> bindCounts = new Dictionary<OIEventType, int>();
@@ -17,7 +19,7 @@ namespace OBSIntegrations {
         }
 
         // OIActionType param might not be necessary. OIRequest could hold sufficient context
-        public OIBinding CreateBinding(OIEventType bsEvent, OIActionType action, OIRequest request) {
+        public OIBinding CreateBinding(OIEventType bsEvent, OIActionType action, JSON.OIRequest request) {
             var bind = bindManager.Bind(bsEvent, action, request);
 
             if (bindCounts.TryGetValue(bsEvent, out _)) {

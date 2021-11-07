@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBSIntegrations {
+using OBSIntegrations.JSON;
+
+namespace OBSIntegrations.Model {
     class BindingManager {
         private static BindingManager instance = null;
         public Dictionary<OIEventType, List<OIBinding>> bindingSets = new Dictionary<OIEventType, List<OIBinding>>();
@@ -13,7 +15,7 @@ namespace OBSIntegrations {
             return instance ?? new BindingManager();
         }
 
-        public OIBinding Bind(OIEventType bsEvent, OIActionType action, OIRequest request) {
+        public OIBinding Bind(OIEventType bsEvent, OIActionType action, JSON.OIRequest request) {
             OIBinding bind = new OIBinding(bsEvent, action, request);
 
             if (!bindingSets.TryGetValue(bsEvent, out List<OIBinding> subset)) {

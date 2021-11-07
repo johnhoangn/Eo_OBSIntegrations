@@ -1,0 +1,20 @@
+{
+	"bindings": [
+		{
+		"eventType": "SongStart", 
+		"actionType": "SetCurrentScene",
+		"actionParams": 
+			{
+				"scene-name": "GameScene"
+			}
+		},
+		{
+		"eventType": "SongFinish", 
+		"actionType": "SetCurrentScene",
+		"actionParams": 
+			{
+				"scene-name": "MenuScene"
+			}
+		}
+	]
+}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace OBSIntegrations {
+namespace OBSIntegrations.JSON {
     abstract class OIRequest {
         static int RequestId = 0;
 

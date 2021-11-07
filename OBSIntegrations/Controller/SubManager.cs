@@ -8,7 +8,9 @@ using BS_Utils.Utilities;
 using WebSocketSharp;
 using Newtonsoft.Json;
 
-namespace OBSIntegrations {
+using OBSIntegrations.Model;
+
+namespace OBSIntegrations.Controller {
     // TODO: Handle BeatsaberHttpStatus events not handled by BSEvents
     class SubManager {
         private static SubManager instance = null;

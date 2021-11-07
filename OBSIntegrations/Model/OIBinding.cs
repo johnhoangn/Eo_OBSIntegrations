@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBSIntegrations {
+using OBSIntegrations.JSON;
+
+namespace OBSIntegrations.Model {
     class OIBinding {
         public OIEventType bsEvent;
         public OIActionType obsAction;
