@@ -13,6 +13,7 @@ namespace OBSIntegrations {
     class SubManager {
         private static SubManager instance = null;
         private static WebSocket OBS_WS = new WebSocket("ws://localhost:9085");
+        private static Dictionary<OIEventType, Action> subDestructors = new Dictionary<OIEventType, Action>();
 
         private SubManager() {
             OBS_WS.Connect(); // TODO: Async and retry loop if closed or never opened
@@ -24,36 +25,56 @@ namespace OBSIntegrations {
         }
 
         public bool SubscribeTo(OIEventType ev, List<OIBinding> bindList) {
-            OBSIntegrations.Log?.Warn("JN: SUBSCRIBE " + ev.ToString());
+            OBSIntegrations.Log?.Warn("JN: SUBSCRIBING TO " + ev.ToString());
+            Action callback = MakeDelegate(ev, bindList);
+            Action destructor;
 
-            // This'll get better, I hope.
+            // Would love to learn a better way to store/remove the callback
             switch (ev) {
                 case OIEventType.SongStarted:
-                    BSEvents.gameSceneLoaded += () => {
-                        OBSIntegrations.Log?.Warn("JN: CASE " + ev.ToString());
-                        bindList.Where(bind => bind.bsEvent == ev).ToList().ForEach(bind => { Trigger(bind); });
-                    };
+                    BSEvents.gameSceneLoaded += callback;
+                    destructor = () => { BSEvents.gameSceneLoaded -= callback; };
                     break;
                 case OIEventType.SongFinished:
-                    BSEvents.menuSceneLoaded += () => {
-                        OBSIntegrations.Log?.Warn("JN: CASE " + ev.ToString());
-                        bindList.Where(bind => bind.bsEvent == ev).ToList().ForEach(bind => { Trigger(bind); });
-                    };
+                    BSEvents.menuSceneLoaded += callback;
+                    destructor = () => { BSEvents.menuSceneLoaded -= callback; };
                     break;
+                default:
+                    throw new ArgumentException("Invalid OIEventType! " + ev.ToString());
             }
+
+
+            if (!subDestructors.TryGetValue(ev, out _)) {
+                OBSIntegrations.Log?.Warn("JN: SUBSCRIBED TO " + ev.ToString());
+                subDestructors.Add(ev, destructor);
+            }
+
             return true;
         }
 
-        // TODO: Cannot currently unsubscribe as I have no reference to
-        //  the handlers assigned to the events.
         public bool UnubscribeFrom(OIEventType ev) {
+            if (subDestructors.TryGetValue(ev, out Action destructor)) {
+                destructor();
+                subDestructors.Remove(ev);
+                OBSIntegrations.Log?.Warn("JN: UNSUBSCRIBED FROM " + ev.ToString() + " " + !subDestructors.TryGetValue(ev, out _));
+            }
 
             return true;
         }
 
-        private void Trigger(OIBinding bind) {
-            OBSIntegrations.Log?.Warn("JN: REQUEST " + JsonConvert.SerializeObject(bind.request));
-            OBS_WS.Send(JsonConvert.SerializeObject(bind.request));
+        private Action MakeDelegate(OIEventType ev, List<OIBinding> bindList) {
+            Action callback = () => {
+                OBSIntegrations.Log?.Warn("JN: CASE " + ev.ToString());
+
+                bindList.Where(bind => bind.bsEvent == ev).ToList().ForEach(bind => {
+                    OBSIntegrations.Log?.Warn("JN: REQUEST " + JsonConvert.SerializeObject(bind.request));
+                    OBS_WS.Send(JsonConvert.SerializeObject(bind.request));
+                });
+
+                UnubscribeFrom(ev);
+            };
+
+            return callback;
         }
     }
 }
