@@ -19,8 +19,8 @@ namespace OBSIntegrations.Model {
             OIBinding bind = new OIBinding(bsEvent, action, request);
 
             if (!bindingSets.TryGetValue(bsEvent, out List<OIBinding> subset)) {
-                bindingSets.Add(bsEvent, new List<OIBinding>());
-                subset = bindingSets[bsEvent];
+                subset = new List<OIBinding>();
+                bindingSets.Add(bsEvent, subset);
             }
 
             subset.Add(bind);
