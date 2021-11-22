@@ -8,11 +8,15 @@ using OBSIntegrations.JSON;
 
 namespace OBSIntegrations.Model {
     class BindingManager {
-        private static BindingManager instance = null;
+        private static BindingManager Instance = null;
         public Dictionary<OIEventType, List<OIBinding>> bindingSets = new Dictionary<OIEventType, List<OIBinding>>();
 
+        private BindingManager() {
+            Instance = this;
+        }
+
         public static BindingManager GetInstance() {
-            return instance ?? new BindingManager();
+            return Instance ?? new BindingManager();
         }
 
         public OIBinding Bind(OIEventType bsEvent, OIActionType action, JSON.OIRequest request) {

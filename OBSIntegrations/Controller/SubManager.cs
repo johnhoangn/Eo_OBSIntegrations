@@ -13,17 +13,18 @@ using OBSIntegrations.Model;
 namespace OBSIntegrations.Controller {
     // TODO: Handle BeatsaberHttpStatus events not handled by BSEvents
     class SubManager {
-        private static SubManager instance = null;
+        private static SubManager Instance = null;
         private static WebSocket OBS_WS = new WebSocket("ws://localhost:9085");
         private static Dictionary<OIEventType, Action> subDestructors = new Dictionary<OIEventType, Action>();
 
         private SubManager() {
             OBS_WS.Connect(); // TODO: Async and retry loop if closed or never opened
             OBSIntegrations.Log?.Warn("JN: OBS SOCKET CONNECTED " + OBS_WS.ReadyState);
+            Instance = this;
         }
 
         public static SubManager GetInstance() {
-            return instance ?? new SubManager();
+            return Instance ?? new SubManager();
         }
 
         public bool SubscribeTo(OIEventType ev, List<OIBinding> bindList) {

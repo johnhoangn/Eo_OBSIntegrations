@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace OBSIntegrations.Controller {
     class OIController {
-        private static OIController instance = null;
+        private static OIController Instance = null;
         private static Dictionary<OIEventType, int> bindCounts = new Dictionary<OIEventType, int>();
 
         private static BindingManager bindManager = BindingManager.GetInstance();
@@ -17,19 +17,20 @@ namespace OBSIntegrations.Controller {
         private Configuration config = new Configuration();
 
         private OIController() {
-           /* config.ReadConfig();
+            /* config.ReadConfig();
 
-            config.data.bindings.ForEach(bind => {
-                CreateBinding(
-                    (OIEventType)Enum.Parse(typeof(OIEventType), bind.eventType),
-                    (OIActionType)Enum.Parse(typeof(OIActionType), bind.actionType),
-                    JsonConvert.DeserializeObject<JSON.OIRequest>(bind.actionParams)
-                );
-            });*/
+             config.data.bindings.ForEach(bind => {
+                 CreateBinding(
+                     (OIEventType)Enum.Parse(typeof(OIEventType), bind.eventType),
+                     (OIActionType)Enum.Parse(typeof(OIActionType), bind.actionType),
+                     JsonConvert.DeserializeObject<JSON.OIRequest>(bind.actionParams)
+                 );
+             });*/
+            Instance = this;
         }
 
         public static OIController GetInstance() {
-            return instance ?? new OIController();
+            return Instance ?? new OIController();
         }
 
         // OIActionType param might not be necessary. OIRequest could hold sufficient context
