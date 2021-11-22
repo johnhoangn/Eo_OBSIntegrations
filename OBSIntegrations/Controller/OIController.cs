@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OBSIntegrations.Model;
+using Newtonsoft.Json;
 
 namespace OBSIntegrations.Controller {
     class OIController {
@@ -13,6 +14,19 @@ namespace OBSIntegrations.Controller {
 
         private static BindingManager bindManager = BindingManager.GetInstance();
         private static SubManager subManager = SubManager.GetInstance();
+        private Configuration config = new Configuration();
+
+        private OIController() {
+           /* config.ReadConfig();
+
+            config.data.bindings.ForEach(bind => {
+                CreateBinding(
+                    (OIEventType)Enum.Parse(typeof(OIEventType), bind.eventType),
+                    (OIActionType)Enum.Parse(typeof(OIActionType), bind.actionType),
+                    JsonConvert.DeserializeObject<JSON.OIRequest>(bind.actionParams)
+                );
+            });*/
+        }
 
         public static OIController GetInstance() {
             return instance ?? new OIController();

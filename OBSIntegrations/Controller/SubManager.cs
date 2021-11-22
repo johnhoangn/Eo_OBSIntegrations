@@ -72,8 +72,6 @@ namespace OBSIntegrations.Controller {
                     OBSIntegrations.Log?.Warn("JN: REQUEST " + JsonConvert.SerializeObject(bind.request));
                     OBS_WS.Send(JsonConvert.SerializeObject(bind.request));
                 });
-
-                UnubscribeFrom(ev);
             };
 
             return callback;

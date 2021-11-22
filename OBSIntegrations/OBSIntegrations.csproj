@@ -98,9 +98,9 @@
     <Compile Include="Controller\OIController.cs" />
     <Compile Include="Controller\SubManager.cs" />
     <Compile Include="Enumerators.cs" />
-    <Compile Include="Controller\BindingWriter.cs" />
+    <Compile Include="Model\Configuration.cs" />
     <Compile Include="JSON\OIRequest.cs" />
-    <Compile Include="JSON\SavedBindings.cs" />
+    <Compile Include="JSON\ConfigData.cs" />
     <Compile Include="JSON\SceneChangeRequest.cs" />
     <Compile Include="Model\OIBinding.cs" />
     <Compile Include="Model\BindingManager.cs" />
