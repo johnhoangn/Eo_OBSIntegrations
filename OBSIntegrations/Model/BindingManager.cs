@@ -16,7 +16,11 @@ namespace OBSIntegrations.Model {
         }
 
         public static BindingManager GetInstance() {
-            return Instance ?? new BindingManager();
+            if (Instance == null) {
+                new BindingManager();
+            }
+
+            return Instance;
         }
 
         public OIBinding Bind(OIEventType bsEvent, OIActionType action, JSON.OIRequest request) {

@@ -30,7 +30,11 @@ namespace OBSIntegrations.Controller {
         }
 
         public static OIController GetInstance() {
-            return Instance ?? new OIController();
+            if (Instance == null) {
+                new OIController();
+            }
+
+            return Instance;
         }
 
         // OIActionType param might not be necessary. OIRequest could hold sufficient context

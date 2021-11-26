@@ -7,7 +7,7 @@ namespace OBSIntegrations {
         internal static OBSIntegrations Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
 
-        internal static Controller.OIController controller = Controller.OIController.GetInstance();
+        internal static Controller.OIController controller;
 
         [Init]
         public OBSIntegrations(IPALogger logger) {
@@ -19,7 +19,9 @@ namespace OBSIntegrations {
         public void OnApplicationStart() {
             OBSIntegrations.Log.Info("JN: Hi, World.");
 
-            controller.CreateBinding(
+            controller = Controller.OIController.GetInstance();
+
+            /*controller.CreateBinding(
                 OIEventType.SongStarted,
                 OIActionType.SetCurrentScene,
                 new JSON.SceneChangeRequest("GameScene")
@@ -29,7 +31,7 @@ namespace OBSIntegrations {
                 OIEventType.SongFinished,
                 OIActionType.SetCurrentScene,
                 new JSON.SceneChangeRequest("MenuScene")
-            );
+            );*/
         }
 
         [OnExit]

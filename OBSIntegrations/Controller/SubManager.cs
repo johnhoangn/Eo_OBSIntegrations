@@ -24,7 +24,11 @@ namespace OBSIntegrations.Controller {
         }
 
         public static SubManager GetInstance() {
-            return Instance ?? new SubManager();
+            if (Instance == null) {
+                new SubManager();
+            }
+
+            return Instance;
         }
 
         public bool SubscribeTo(OIEventType ev, List<OIBinding> bindList) {
