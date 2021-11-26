@@ -11,11 +11,13 @@ using OBSIntegrations.JSON;
 
 namespace OBSIntegrations.Controller {
     class Configuration {
-        public static readonly string configFile = Path.Combine(Application.dataPath, @"..\UserData\OBSIntegrationsConfig.json");
+        public static readonly string configFile = Path.Combine(Application.dataPath, @"..\UserData\Eo\OBSIntegrations\Config.json");
 
         public ConfigData data { get; private set; }
 
         public void ReadConfig() {
+            OBSIntegrations.Log.Info("JN: Config Path: " + configFile);
+
             if (!File.Exists(configFile)) {
                 ConfigData defaultConfig = new ConfigData();
 
@@ -25,7 +27,11 @@ namespace OBSIntegrations.Controller {
                 return;
             }
 
-            data = JsonConvert.DeserializeObject<ConfigData>(File.ReadAllText(configFile));
+            string fileContents = File.ReadAllText(configFile);
+
+            OBSIntegrations.Log.Info("JN: Config Contents: " + fileContents);
+
+            data = JsonConvert.DeserializeObject<ConfigData>(fileContents);
         }
 
         public void WriteConfig() {

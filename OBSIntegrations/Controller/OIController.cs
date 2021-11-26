@@ -17,15 +17,16 @@ namespace OBSIntegrations.Controller {
         private Configuration config = new Configuration();
 
         private OIController() {
-            /* config.ReadConfig();
+            config.ReadConfig();
 
-             config.data.bindings.ForEach(bind => {
-                 CreateBinding(
-                     (OIEventType)Enum.Parse(typeof(OIEventType), bind.eventType),
-                     (OIActionType)Enum.Parse(typeof(OIActionType), bind.actionType),
-                     JsonConvert.DeserializeObject<JSON.OIRequest>(bind.actionParams)
-                 );
-             });*/
+            config.data.bindings.ForEach(bind => {
+                CreateBinding(
+                    (OIEventType)Enum.Parse(typeof(OIEventType), bind.eventType),
+                    (OIActionType)Enum.Parse(typeof(OIActionType), bind.actionType),
+                    JsonConvert.DeserializeObject<JSON.SceneChangeRequest>(bind.paramString())
+                );
+            });
+
             Instance = this;
         }
 
